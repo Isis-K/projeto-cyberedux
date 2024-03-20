@@ -1,0 +1,70 @@
+{%extends 'base.html'%}
+{%block titulo%}
+
+{%endblock titulo%}
+{% block conteudo %}
+
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<section class='ms-3 '>
+ <form action="" method='GET'>
+    <button class='btn btn-primary float-end me-5' type="submit">Pesquisar</button>
+     <select class="form-select w-50" aria-label="Default select example" name='materia' >
+         {%for materia in materias%}
+         <option value={{materia.id}}>{{materia.nome}}</option>
+         {%endfor%}
+    </select>       
+ </form>
+
+
+
+<table class="table table-bordered table-dark  table-hover w-75 m-auto mt-5 mb-3 ">
+    <thead>
+      <tr>
+        
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Materia</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if resultado%}
+      {%for professor in resultado%}
+      <tr>
+        <td>{{professor.id}}</td>
+        <td>{{professor.nome}}</td>
+        <td> <p>
+            {%for materia in professor.materias.all%}
+            {% comment %} se não for a ultima materia ira adicionar uma virgula  {% endcomment %}
+            {{materia.nome}} {% if not forloop.last %}, {% endif %}  
+            {%endfor%}
+          </p>
+        </td>
+
+          <td>
+              <form action="" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="professor_id" value="{{ professor.id }}">
+                <button type="submit" class="btn btn-success ms-5">contratar</button>
+                      </form>
+          </td>
+      </tr>
+
+    {% endfor %}
+    {% else %}
+    <p>Nenhum resultado encontrado.</p>
+
+    {%endif%}
+    </tbody>
+  </table>
+
+
+{% endblock conteudo %}

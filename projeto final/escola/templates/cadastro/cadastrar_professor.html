@@ -1,0 +1,50 @@
+{%extends 'base.html'%}
+
+{%block conteudo%}
+
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<h3 class='ms-5 mb-2'> Cadastrar professor</h3>
+    <section class='cadastro'>
+        <form action=""method='POST'>
+            {%csrf_token%}
+            
+                <section class='d-flex'>
+                    <div class="form-floating mb-3 w-50 me-1 ">
+                        <input type="text" class="form-control" name="nome" placeholder="Nome">
+                        <label for="floatingInput">Nome</label>
+                    </div>
+                    
+                    <div class="form-floating mb-3 w-50 me-1 ">
+                        <input type="text" class="form-control"  name='cpf' placeholder="CPF">
+                        <label for="floatingInput">CPF</label>
+                    </div>
+                </section>
+                <div>
+                  
+                
+                </div>
+                <div>
+                    <a href="{% url 'visualizar_professor' %}"class='btn btn-dark w-25 '>Cancelar</a>
+                    <button class='btn btn-dark float-end me-2 w-25'>Enviar</button>
+                </div>
+        </form>
+        </section>
+    </section>
+
+        </section>
+        
+
+    </section>
+    <style>
+        
+    </style>
+
+{%endblock conteudo%}

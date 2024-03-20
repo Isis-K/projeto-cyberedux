@@ -1,0 +1,94 @@
+{% extends "base.html"%}
+
+{%block conteudo%}
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<h3> Cadastrar Escola</h3>
+    <section class='cadastro'>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {%csrf_token%}
+            <section id="tudo">
+                <section >
+                    <div class="form-floating mb-3 w-50 me-3 mt-3">
+                        <input type="text" class="form-control" name='nome' placeholder="Nome">
+                        <label for="floatingInput">Nome</label>
+                    </div>
+                    <div class="form-floating mb-3 w-50 me-3 ">
+                        <input type="text" class="form-control" name='endereco' placeholder="Endereço">
+                        <label for="floatingInput">Endereço</label>
+                    </div>
+                
+                </section>
+                
+                <section class='d-flex'>
+                    <select class="form-select w-25" aria-label="Default select example" name='tipo'>
+                        <option value="" disabled selected style="display:none;">Tipo de escola</option>
+                        <option value="Privada">Privada</option>
+                        <option value="Publico">Publica</option>
+                
+                </select>
+                     
+                      <select class="form-select w-25 ms-1" name='cidade' aria-label="Default select example">
+                        <option value="" disabled selected style="display:none;">Selecione uma cidade</option>
+                        {%for cidade in cidades%}
+                        <option value={{cidade.id}}>{{cidade.nome}}</option>
+                        {%endfor%}
+                      </select>
+                </section>
+                <section class="mt-2">
+                    <input type="file" name="imagem" accept="image/png, image/jpeg">
+                </section>
+    
+            <div id='botao'>
+                <a href="{% url 'visualizar_escola' %}"class='btn btn-dark '>Cancelar</a>
+                <button class='btn btn-dark ' type='submit'> Enviar</button>
+            </div>
+        </section>
+        </form>
+    </section>
+   
+
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&display=swap');
+ :root{
+            --fontDestaque: "Lexend Giga", sans-serif;
+        }
+h3{
+    background-color: rgb(26, 141, 103);
+    width: 35%;
+    font-size: 2.5rem;
+    padding: 10px;
+    color: aliceblue;
+    margin-left: 4rem;
+    margin-bottom: 3rem;
+    border-radius: 6px;
+    font-family: var(--fontDestaque);
+}
+#imagem{
+    
+}
+#botao{
+    margin-top:1rem;
+}
+#botao > a {
+    width:7rem;
+}
+button{
+    margin-left:1rem;
+    width: 7rem;
+}
+#tudo{
+    margin-left: 10%;
+    width: 100rem;
+}
+
+   
+</style>
+
+{%endblock conteudo%}

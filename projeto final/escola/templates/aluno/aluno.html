@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block titulo %}
+
+
+
+
+{% include 'escola/navbar_escola.html' %}
+{%load static%}
+
+{% endblock titulo %}
+{% block conteudo %}
+
+
+{% if turma.qtd_alunos == quantidadeMaxima%}
+<p> Esta turma esta cheia </p>
+{% else %}
+<a href="{% url 'cadastroAluno' id_turma=turma.id id_escola=escola.pk %}" class="btn btn-dark float-end me-3 mb-3">Cadastrar Aluno </a>
+{% endif %}
+    
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Faltas</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+     {% for aluno in alunos%}
+      <tr>
+        <td>{{aluno.nome}}</td>
+        <td>{{aluno.falta}}</td>
+        <td><form action="{% url 'editar_aluno' id_turma=turma.id id_escola=escola.pk id_aluno=aluno.id%}"><button class="btn btn-warning float-end "><img class='icon' src="{% static "imagens/editar.webp"%}"></button></form></td>
+
+        <td><form action="{% url 'DeleteAluno' id_aluno=aluno.id id_turma=turma.id id_escola=escola.pk%}"><button class="btn btn-danger float-end"><img class='icon' src="{% static "imagens/Delete.png"%}"></button></form></td>
+      
+      </tr>
+    {%endfor%}
+    </tbody>
+  </table>
+{% endblock conteudo %}

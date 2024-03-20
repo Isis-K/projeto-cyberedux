@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block titulo %}
+{% include 'escola/navbar_escola.html' %}
+<a class='float-end me-2 btn btn-dark' href="{% url 'cadastroTurma' id_escola=escola.pk %}">Inserir</a>
+{% endblock titulo %}
+{% block conteudo %}
+{%load static%}
+<table id='turma' class="table  m-auto mb-5">
+    <thead>
+      <tr>
+        <th scope="col">Turma</th>
+        <th scope="col">Quantidade de alunos</th>
+        <th scope="col">Professores</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for turma in turmas%}
+      <tr>
+        <td><a href="{% url 'view_alunos' id_escola=escola.pk id_turma=turma.id%}" rel=''>{{turma.serie}}<a></td>
+        <td>{{turma.qtd_alunos}}</td>
+        <td>
+          <p>
+          {%for professor in turma.Professores.all %}
+          {{professor.nome}}
+            (
+            {%for materia in professor.materias.all%}
+             {{materia.nome}} {% if not forloop.last %}, {% endif %}  
+            {%endfor%}
+            )
+            {%if not forloop.last%} , {%endif%}
+          {%endfor%}
+        </p>
+        </td>
+          <td><a  href="{% url 'view_turma_professor' id_escola=escola.pk  id_turma=turma.id%}" class='btn btn-primary'> Adicionar professor</a></td>
+
+          <td>
+             <a href="{% url 'RetirarProfessorTurma' id_escola=escola.pk id_turma=turma.id%}" class='btn btn-danger'> Retirar professor </a>
+            </td> 
+        
+          <form action="{% url 'EditarTurma' id_escola=escola.id id_turma=turma.id %}">
+            <td>
+              <button class="btn btn-warning float-end"><img class='icon' src="{% static "imagens/editar.webp"%}"></button>
+            </td>
+          </form>
+
+          <form action="{% url 'excluirTurma' id=turma.id id_escola=escola.id %}">
+            <td>
+              <button class="btn btn-danger float-end"><img class='icon' src="{% static "imagens/Delete.png"%}"></button>
+            </td>
+          </form>
+          <td> </td>
+         
+      </tr>
+      <tr>
+      {%endfor%}
+      
+      
+    </tbody>
+  </table>
+
+  
+  
+{% endblock conteudo %}
+

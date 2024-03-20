@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+
+{%block conteudo%}
+
+
+<h3 class='ms-5 mb-2'> Editar Aluno</h3>
+
+    <section class='cadastro'>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <section class='d-flex'>
+                <div class="form-floating mb-3 w-100 me-1 ">
+                    <input type="text" class="form-control"  placeholder="Nome" name="nome" value={{aluno.nome}}>
+                    <label for="floatingInput" >Nome</label>
+                </div>
+                <div class="form-floating mb-3 w-100 me-1 ">
+                    <input type="text" class="form-control"  placeholder="Faltas" name="falta" value={{aluno.falta}}>
+                    <label for="floatingInput" >Faltas</label>
+                </div>
+            </section>
+            <section>
+                <button class='btn btn-dark' type="submit">Enviar</button>
+            </div>
+        </form>
+        </section>
+    </section>
+   {%endblock conteudo%}

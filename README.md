@@ -12,7 +12,8 @@
 <img src="img/logo.png" width="150px">
 
 <!-- Substitua o seguinte parágrafo por um resumo do seu projeto: -->
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Essa interface grafica tem como objetivo ser uma gestão de escolas.Onde o usuário poderia realizar  cadastro de escolas, cidades as quais as escolas ficam , os professores, turmas e alunos.Além de poder editar e deletar os dados
 
 ## Documentação
 

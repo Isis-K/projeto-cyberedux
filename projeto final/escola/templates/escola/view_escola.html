@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block titulo %}
+
+
+{% include 'escola/navbar_escola.html' %}
+
+{% endblock titulo %}
+
+{% block conteudo %}
+
+
+<ul class="list-group list-group-item-dark ">
+    <div class='lista'>
+        
+        <li class="list-group-item">Cidade: {{escola.cidade}}</li>
+        <li class="list-group-item">Escola: {{escola.nome}}</li>
+        <li class="list-group-item">Quantidade de alunos: {{aluno}} </li>
+        <li class="list-group-item">Quantidade de professores: {{professor}}</li>
+        <li class="list-group-item">Endereço: {{escola.endereco}}</li>
+    </div>
+  </ul>
+ <style>
+    .lista{
+        margin-bottom:5.1rem;
+    }
+    .lista > li{
+        width:45%;
+        margin:auto;
+        font-size:25px;
+        font-family:var(--fontPrincipal)
+    }
+</style>
+  
+{% endblock conteudo %}
+

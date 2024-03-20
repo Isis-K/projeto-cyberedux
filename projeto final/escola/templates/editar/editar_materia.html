@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+
+{%block conteudo%}
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<h3 class='ms-5 mb-2'>Editar Matéria</h3>
+
+    <section class='cadastro'>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <section class='d-flex'>
+                <div class="form-floating mb-3 w-50 me-1 ">
+                    <input type="text" class="form-control"  placeholder="Nome" name="nome" value={{materia.nome}}>
+                    <label for="floatingInput" >Nome</label>
+                </div>
+            </section>
+                <section>
+                    <button class='btn btn-dark' type="submit">Enviar</button>
+                </div>
+        </form>
+        </section>
+    </section>
+   
+  
+    <style>
+       .cadastro{
+        margin-bottom: 10rem;
+       } 
+      
+    </style>
+
+{%endblock conteudo%}

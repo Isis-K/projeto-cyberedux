@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+<h1 id='tituloPrimario'>Cidade</h1>
+<a href='/cadastro_cidade' class="btn btn-dark float-end me-3 mb-3" > Inserir </a>
+{% endblock titulo %}
+
+{% block conteudo  %}
+{% load static %}
+
+<section>
+    
+  <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Cidade</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        {%for cidade in cidades%}
+        <tr>
+          
+          <td>{{cidade.id}}</td>
+          <td>{{cidade.nome}}</td>
+        
+         
+          <td><form action="{% url 'EditarCidade' cidade.id %}"><button class="btn btn-warning float-end "><img class='icon' src="{% static "imagens/editar.webp"%}"></button></form></td>
+          <form action="{%url 'excluirCidade' cidade.id%}" method='POST' >
+            {% csrf_token%}
+            <td><button class="btn btn-danger float-end"><img class='icon' src="{% static "imagens/Delete.png"%}"></button></td>
+          </form>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+</section>
+
+<style>
+  section{
+      padding:1rem;
+  }
+
+
+ 
+</style>
+{% endblock conteudo  %}

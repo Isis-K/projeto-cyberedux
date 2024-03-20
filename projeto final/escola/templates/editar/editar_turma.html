@@ -1,0 +1,44 @@
+{% extends 'base.html'%}
+
+{%block conteudo %}
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<h3>Editar turma</h3>
+
+<section class="cadastro">
+    <form action="" method='POST'>
+        {%csrf_token%}
+        <section class='d-flex'>
+            <div class="form-floating mb-3 w-50 me-1 ">
+                <input type="text" class="form-control" name='nome' placeholder="Nome"  value={{turma.serie}}>
+                <label for="floatingInput" >Nome</label>
+            </div>
+            <div class="form-floating mb-3 w-50 me-1 ">
+                <input type="text" class="form-control" name='qtd_alunos' value={{turma.qtd_alunos}}  placeholder="Maximo de alunos">
+                <label for="floatingInput">Maximo de alunos</label>
+            </div>
+        </section>
+        <button  class='btn btn-dark mt-3' type='submit'>Enviar</button>
+    </form>
+</section>
+
+
+
+<style>
+    h3{
+        margin-left: 5rem;
+        margin-bottom: 2rem;
+        font-family: var(--fontDestaque);
+        background-color: rgb(26, 141, 103);
+        color: aliceblue;
+    width: 35%;
+    }
+</style>
+
+{%endblock conteudo %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+<h1 id='tituloPrimario'>Matéria</h1>
+<a href='/cadastroMateria/' class="btn btn-dark float-end me-3 mb-3" > Inserir </a>
+{% endblock titulo %}
+
+{% block conteudo  %}
+{% load static %}
+
+<section>
+    
+  <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Matéria</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        {% for materia in materias%}
+        <tr>
+          <td>{{materia.id}}</td>
+          <td>{{materia.nome}}</td>
+     
+          <td><a href="{% url 'EditarMateria' materia.id %}"class="btn btn-warning float-end "> <img class='icon' src="{% static "imagens/editar.webp"%}"</a></td>
+
+          <form action="{% url 'excluirMateria' materia.id %}" method='POST' >
+            {% csrf_token%}
+            <td><button class="btn btn-danger float-end"><img class='icon' src="{% static "imagens/Delete.png"%}"></button></td>
+          </form>
+        </tr>
+        {%endfor%}
+      
+      </tbody>
+    </table>
+</section>
+
+<style>
+  section{
+      padding:1rem;
+  }
+
+
+ 
+</style>
+{% endblock conteudo  %}

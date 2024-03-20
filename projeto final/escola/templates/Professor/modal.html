@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+
+{%block conteudo%}
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<h3 class='ms-5 mb-2'>Inserir Materia</h3>
+
+    <section class='cadastro'>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <section class='d-flex'>
+              <div class="form-floating mb-3 w-50 me-1 ">
+                    <p id='nomeProfessor'>Professor(a):  {{professor.nome}} </p>
+              </div>
+          </section>
+            <section class='me-5'>
+
+              <select class="form-select w-25 ms-1 " name='materia' aria-label="Default select example">
+                
+                {%for materia in materias%}
+                <option value={{materia.id}}>{{materia.nome}}</option>
+                {%endfor%}
+              </select>
+        <section>
+               
+            </section>
+                <section>
+                    <button class='btn btn-dark mt-4' type="submit">Enviar</button>
+                </div>
+        </form>
+        </section>
+    </section>
+   
+  
+    <style>
+       .cadastro{
+        margin-bottom: 10rem;
+       } 
+       #nomeProfessor{
+        font-size:20px;
+        margin-left:7px
+       }
+      
+    </style>
+
+{%endblock conteudo%}

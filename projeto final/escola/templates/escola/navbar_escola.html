@@ -1,0 +1,41 @@
+
+
+<nav class="navbar navbar-expand-lg navbar bg-primary mb-3">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">{{escola.nome}}</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+          <li class="nav-item barra">
+            <a class="nav-link active text-white  " aria-current="page" href="{% url 'view_escola' id_escola=escola.pk %}">Geral</a>
+          </li>
+          <li class="nav-item barra">
+            <a class="nav-link active text-white" aria-current="page" href="{% url 'view_professor' id_escola=escola.pk %}">Professor</a>
+          </li>
+          <li class="nav-item barra">
+            <a class="nav-link active text-white" aria-current="page" href="{% url 'view_turma' id_escola=escola.pk %}">Turma</a>
+          </li>
+          <li class="nav-item" id='voltar'>
+            <a class="nav-link active  text-white "  aria-current="page" href="{% url 'visualizar_escola'%}">Voltar</a>
+          </li> 
+      
+      </div>
+    </div>
+  </nav>
+
+<style>
+  #voltar:hover{
+    background-color:#F0341C;
+    border-radius:3rem;
+    transition: background-color 0.3s ease;
+  }
+  .barra:hover{
+    background-color:#3e5bcf;
+    border-radius:3rem;
+    transition: background-color 0.3s ease;
+  }
+
+</style>

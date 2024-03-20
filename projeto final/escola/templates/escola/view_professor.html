@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block titulo %}
+
+
+{% include 'escola/navbar_escola.html' %}
+<a href="{% url 'view_professor_escola' id_escola=escola.pk %}" class="btn btn-dark me-3 mb-2 float-end">Cadastrar professor </a>
+
+
+{% endblock titulo %}
+{% block conteudo %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Materia</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {%for professor in professores%}
+      <tr>
+        <td>{{professor.nome}}</td>
+        <td>  <p>
+          {%for materia in professor.materias.all%}
+          {{materia.nome}} {% if not forloop.last %}, {% endif %}  
+          {%endfor%}
+        </p></td>
+        <form action="{% url 'retirar_professor' id_escola=escola.pk id_professor=professor.id%}">
+          <td><button class="btn btn-danger">Retirar</button></td>
+        </form>
+      </tr>
+      {%endfor%}
+
+      
+  
+    </tbody>
+  </table>
+
+  
+
+
+  
+  
+{% endblock conteudo %}

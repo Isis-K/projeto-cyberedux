@@ -1,0 +1,75 @@
+{% extends "base.html"%}
+
+{%block conteudo%}
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<h3> Editar Escola</h3>
+    <section class='cadastro'>
+        <form action="" method="POST">
+            {%csrf_token%}
+            <section id="tudo">
+                <section >
+                    <div class="form-floating mb-3 w-50 me-3 mt-3">
+                        <input type="text" class="form-control" name='nome' value='{{escola.nome}}' placeholder="Nome">
+                        <label for="floatingInput">Nome</label>
+                    </div>
+                    <div class="form-floating mb-3 w-50 me-3 ">
+                        <input type="text" class="form-control" name='endereco' value="{{escola.endereco}}" placeholder="Endereço">
+                        <label for="floatingInput">Endereço</label>
+                    </div>
+                
+                </section>
+                
+                <section class='d-flex'>
+                    <select class="form-select w-25" aria-label="Default select example" value="" name='tipo'>
+                        <option value="Privada" {% if escola.tipo == "Privada" %} selected {% endif %}>Privada</option>
+                        <option value="Publico" {% if escola.tipo == "Publico" %} selected {% endif %}>Pública</option>
+                    </select>
+                
+                </select>
+                      <select class="form-select w-25 ms-1" name='cidade' value="" aria-label="Default select example">
+                        {%for cidade in cidades%}
+                        <option value="{{ cidade.nome }}" {% if escola.cidade == cidade.nome %} selected {% endif %}>{{ cidade.nome }}</option>
+                        {%endfor%}
+                      </select>
+                </section>
+    
+            <button class='btn btn-dark mt-4 mb-3' type='submit'> Enviar</button>
+        </section>
+        </form>
+    </section>
+   
+
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&display=swap');
+ :root{
+            --fontDestaque: "Lexend Giga", sans-serif;
+        }
+h3{
+    width: 35%;
+    font-size: 2.5rem;
+    padding: 10px;
+    color: black;
+    margin-left: 4rem;
+    margin-bottom: 3rem;
+    border-radius: 6px;
+    font-family: var(--fontDestaque);
+}
+button{
+    width: 7rem;
+}
+#tudo{
+    margin-left: 10%;
+    width: 100rem;
+}
+
+   
+</style>
+
+{%endblock conteudo%}

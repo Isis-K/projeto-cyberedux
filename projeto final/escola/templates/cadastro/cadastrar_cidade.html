@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+
+{%block conteudo%}
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<h3 class='ms-5 mb-2'> Cadastrar Cidade</h3>
+
+    <section class='cadastro'>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <section class=''>
+                <div class="form-floating mb-3 w-75 m-auto ">
+                    <input type="text" class="form-control"  placeholder="Nome" name="nome">
+                    <label for="floatingInput" >Nome</label>
+                </div>
+            </section>
+            <section  id='botao'>
+                <a href="{% url 'visualizar_cidade' %}"class='btn btn-dark w-25 ms-5' >Cancelar</a>
+                <button class='btn btn-dark w-25' type="submit">Enviar</button>
+            </section>
+        </form>
+    </section>
+   
+  
+    <style>
+       .cadastro{
+        margin-bottom: 10rem;
+       } 
+       #botao{
+        margin-left:4.3rem;
+       }
+       #botao>button{
+        margin-left:16rem;
+       }
+      
+    </style>
+
+{%endblock conteudo%}

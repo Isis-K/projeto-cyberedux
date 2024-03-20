@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block titulo %}
+<h1 id='tituloPrimario'>Professor</h1>
+<a href='/cadastroProfessor' class="btn btn-dark float-end me-3 mb-3" > Inserir </a>
+{% endblock titulo %}
+
+{% block conteudo  %}
+{% load static %}
+
+<section>
+    
+  <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Nome</th>
+          <th scope="col">Matéria</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for professor in professores%}
+        <tr>
+          <td><a href="" rel=''><a>{{professor.nome}}</td>
+           
+          <td>
+             <p>
+              {%for materia in professor.materias.all%}
+              {% comment %} se não for a ultima materia ira adicionar uma virgura  {% endcomment %}
+              {{materia.nome}} {% if not forloop.last %}, {% endif %}  
+              {%endfor%}
+            </p>
+            
+          </td>
+        
+          <td>
+            <a  href="{% url 'visualizar_professor_model' id_professor=professor.pk %}">
+            Adicionar Matéria
+            </a> 
+          </td>
+          <td>
+            <a  href="{% url 'Retirar_materia_professor' id_professor=professor.id%}">
+            Retirar Matéria
+            </a> 
+          </td>
+          <td><button class="btn btn-warning float-end "><img class='icon' src="{% static "imagens/editar.webp"%}"></button></td>
+          <td>
+            <form action="{% url 'excluirProfessor' professor.id %}"><button class="btn btn-danger float-end"><img class='icon' src="{% static "imagens/Delete.png"%}"></button></form>
+          </td>
+        </tr>
+        {%endfor%}
+    
+      </tbody>
+    </table>
+</section>
+
+
+
+<style>
+  section{
+      padding:1rem;
+  }
+
+
+ 
+</style>
+{% endblock conteudo  %}
+
+
